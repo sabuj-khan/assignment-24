@@ -4,7 +4,7 @@
         <div class="card px-5 py-5">
             <div class="row justify-content-between ">
                 <div class="align-items-center col">
-                    <h6>Events</h6>
+                    <h6>Tasks</h6>
                 </div>
                 <div class="align-items-center col">
                     <button data-bs-toggle="modal" data-bs-target="#create-modal" class="float-end btn m-0 btn-sm bg-gradient-primary">Create </button>
@@ -16,7 +16,7 @@
                 <thead>
                 <tr class="bg-light">
                     <th>No</th> 
-                    <th>Name</th>
+                    <th>Task Name</th>
                     <th>Description</th>
                     <th>Category</th>
                     <th>Date</th>
@@ -35,14 +35,13 @@
 </div>
 </div>
 
-
 <script>
 
-    gettingEventList();
+    gettingAllTasks();
 
-    async function gettingEventList(){
+    async function gettingAllTasks(){
         showLoader();
-        let response = await axios.get('/event-list')
+        let response = await axios.get('/task-list')
         hideLoader();
 
         let tableList = $("#tableList");
@@ -50,6 +49,7 @@
 
         tableData.DataTable().destroy();
         tableList.empty();
+
         response.data.forEach(function(item, index){
             let row = `
             <tr>
@@ -73,8 +73,8 @@
 
         $(".editBtn").on('click', async function(){
             let id = $(this).data('id');
-            await fillupUpdateEventForm(id);
-            //$("#updateID").val(id);
+            await fillupUpdateTaskForm(id)
+            $("#updateID").val(id);
             $("#update-modal").modal('show');
             
         })
@@ -86,14 +86,13 @@
            
         });
 
+
+        
         new DataTable('#tableData',{
             order:[[0,'desc']],
             lengthMenu:[5,10,15,20,30]
         });
 
-        
-
-
-
     }
+
 </script>

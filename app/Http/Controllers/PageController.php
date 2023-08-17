@@ -45,5 +45,9 @@ class PageController extends Controller
         return view('pages.dashboard.event-page');
     }
 
+    function taskPageShow():View{
+        return view('pages.dashboard.tasks-page');
+    }
+
 
 }

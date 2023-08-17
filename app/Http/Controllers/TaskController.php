@@ -12,7 +12,7 @@ class TaskController extends Controller
     function allTaskList(Request $request){
         $user_id = $request->header('id');
 
-        return Task::where('user_id', '=', $user_id)->get();
+        return Task::with('eventCategory')->where('user_id', '=', $user_id)->get();
     }
     function taskCreation(Request $request){
         try{

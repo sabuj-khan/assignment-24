@@ -40,6 +40,10 @@ Route::get('/eventCategory', [PageController::class, 'eventCategoryPage'])->midd
 // Events Page Route
 Route::get('/eventPage', [PageController::class, 'eventPageShow'])->middleware([TokenVerificationMiddleware::class]);
 
+// Task Page Route
+Route::get('/taskPage', [PageController::class, 'taskPageShow'])->middleware([TokenVerificationMiddleware::class]);
+
+
 
 // User Logout
 Route::get('/logout', [PageController::class, 'userLogout']);
@@ -73,7 +77,7 @@ Route::post('/event-by-id', [EventController::class, 'eventById'])->middleware([
 
 // Task Ajux API
 Route::get('/task-list', [TaskController::class, 'allTaskList'])->middleware([TokenVerificationMiddleware::class]);
-Route::post('task-create', [TaskController::class, 'taskCreation'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/task-create', [TaskController::class, 'taskCreation'])->middleware([TokenVerificationMiddleware::class]);
 Route::post('/task-update', [TaskController::class, 'taskUpdating'])->middleware([TokenVerificationMiddleware::class]);
 Route::post('/task-delete', [TaskController::class, 'taskDeleting'])->middleware([TokenVerificationMiddleware::class]);
 Route::post('/task-by-id', [TaskController::class, 'taskById'])->middleware([TokenVerificationMiddleware::class]);

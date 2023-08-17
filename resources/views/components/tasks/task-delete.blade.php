@@ -9,7 +9,7 @@
             <div class="modal-footer justify-content-end">
                 <div>
                     <button type="button" id="delete-modal-close" class="btn shadow-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button onclick="DeleteEvent()" type="button" id="confirmDelete" class="btn shadow-sm btn-danger" >Delete</button>
+                    <button onclick="DeleteTask()" type="button" id="confirmDelete" class="btn shadow-sm btn-danger" >Delete</button>
                 </div>
             </div>
         </div>
@@ -18,18 +18,18 @@
 
 <script>
 
-    async function DeleteEvent(){
+    async function DeleteTask(){
         let id = document.getElementById('deleteID').value;
 
         document.getElementById('delete-modal-close').click();
 
         showLoader();
-        let response = await axios.post('/event-delete', {id:id});
+        let response = await axios.post('/task-delete', {id:id});
         hideLoader();
 
         if(response.status === 200 && response.data['status'] === 'success'){
             successToast(response.data['message']);
-            await gettingEventList();
+            await gettingAllTasks();
 
         }else{
             errorToast('Request Fail to delete !');

@@ -118,7 +118,7 @@
                 successToast(response.data['message']);
                 document.getElementById("update-form").reset();
 
-                await await gettingEventList();
+             await gettingEventList();
             }else{
                 errorToast(response.data['message']);
                 

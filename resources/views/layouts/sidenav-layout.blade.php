@@ -78,11 +78,15 @@
     </a>
     <a href="{{url("/eventCategory")}}" class="side-bar-item">
         <i class="fa fa-chevron-circle-right  text-dark"></i>
-        <span class="side-bar-item-caption">Event Categories</span>
+        <span class="side-bar-item-caption">Events Categories</span>
     </a>
     <a href="{{url("/eventPage")}}" class="side-bar-item">
         <i class="fa fa-chevron-circle-right  text-dark"></i>
         <span class="side-bar-item-caption">Events</span>
+    </a>
+    <a href="{{url("/taskPage")}}" class="side-bar-item">
+        <i class="fa fa-chevron-circle-right  text-dark"></i>
+        <span class="side-bar-item-caption">Tasks</span>
     </a>
 
 
