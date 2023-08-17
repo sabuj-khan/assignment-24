@@ -41,7 +41,7 @@
 <nav class="navbar fixed-top px-0 shadow-sm bg-white">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/dashboard">
             <span class="icon-nav m-0 h5" onclick="MenuBarClickHandler()">
                 <img class="nav-logo-sm mx-2"  src="{{asset('images/menu.svg')}}" alt="logo"/>
             </span>
@@ -76,14 +76,13 @@
         <i class="fa fa-chevron-circle-right  text-dark"></i>
         <span class="side-bar-item-caption">Dashboard</span>
     </a>
-    <a href="{{url("/eventPage")}}" class="side-bar-item">
-        <i class="fa fa-chevron-circle-right  text-dark"></i>
-        <span class="side-bar-item-caption">Events</span>
-    </a>
-
     <a href="{{url("/eventCategory")}}" class="side-bar-item">
         <i class="fa fa-chevron-circle-right  text-dark"></i>
         <span class="side-bar-item-caption">Event Categories</span>
+    </a>
+    <a href="{{url("/eventPage")}}" class="side-bar-item">
+        <i class="fa fa-chevron-circle-right  text-dark"></i>
+        <span class="side-bar-item-caption">Events</span>
     </a>
 
 
