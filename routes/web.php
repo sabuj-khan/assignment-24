@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventCategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TokenVerificationMiddleware;
 use App\Models\User;
@@ -67,7 +68,13 @@ Route::post('/event-category-by-Id', [EventCategoryController::class, 'eventCate
 Route::get('/event-list', [EventController::class, 'eventListShow'])->middleware([TokenVerificationMiddleware::class]);
 Route::post('/event-create', [EventController::class, 'eventCreation'])->middleware([TokenVerificationMiddleware::class]);
 Route::post('/event-update', [EventController::class, 'eventUpdating'])->middleware([TokenVerificationMiddleware::class]);
-Route::post('event-delete', [EventController::class, 'eventDeleting'])->middleware([TokenVerificationMiddleware::class]);
-Route::post('/eventById', [EventController::class, 'eventById'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/event-delete', [EventController::class, 'eventDeleting'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/event-by-id', [EventController::class, 'eventById'])->middleware([TokenVerificationMiddleware::class]);
 
+// Task Ajux API
+Route::get('/task-list', [TaskController::class, 'allTaskList'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('task-create', [TaskController::class, 'taskCreation'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/task-update', [TaskController::class, 'taskUpdating'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/task-delete', [TaskController::class, 'taskDeleting'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/task-by-id', [TaskController::class, 'taskById'])->middleware([TokenVerificationMiddleware::class]);
 

@@ -18,5 +18,9 @@ class User extends Model
         return $this->hasMany(Event::class);
     }
 
+    public function task(){
+        return $this->hasMany(Task::class);
+    }
+
 
 }

@@ -15,9 +15,10 @@
             <table class="table  table-flush" id="tableData">
                 <thead>
                 <tr class="bg-light">
-                    {{-- <th>No</th> --}}
+                    <th>No</th> 
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Category</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Location</th>
@@ -37,7 +38,7 @@
 
 <script>
 
-    gettingEventList()
+    gettingEventList();
 
     async function gettingEventList(){
         showLoader();
@@ -53,8 +54,10 @@
             let row = `
             <tr>
                
+                <td>${index+1}</td>
                 <td>${item['title']}</td>
                 <td>${item['description']}</td>
+                <td>${item['event_category']['name']}</td>
                 <td>${item['date']}</td>
                 <td>${item['time']}</td>
                 <td>${item['location']}</td>
@@ -67,10 +70,22 @@
             tableList.append(row);
         });
 
+
+        $(".editBtn").on('click', async function(){
+            let id = $(this).data('id');
+            await fillupUpdateEventForm(id);
+            //$("#updateID").val(id);
+            $("#update-modal").modal('show');
+            
+        })
+
         new DataTable('#tableData',{
             order:[[0,'desc']],
-            lengthMenu:[2,10,15,20,30]
+            lengthMenu:[5,10,15,20,30]
         });
+
+        
+
 
 
     }

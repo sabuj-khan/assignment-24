@@ -11,65 +11,42 @@ class EventController extends Controller
     function eventListShow(Request $request){
         $user_id = $request->header('id');
 
-       $result = Event::where('user_id', '=', $user_id)->get();
+       $result = Event::with('eventCategory')->where('user_id', '=', $user_id)->get();
 
        return $result;
     }
 
 
-    // function eventCreation(Request $request){
-    //     try{
-    //         $user_id = $request->header('id');
-
-    //          Event::create([
-    //             'user_id'=>$user_id,
-    //             'title'=>$request->input('title'),
-    //             'description'=>$request->input('description'),
-    //             'time'=>$request->input('time'),
-    //             'date'=>$request->input('date'),
-    //             'location'=>$request->input('location'),
-    //             'event_category_id'=>$request->input('event_category_id ')
-    //         ]);
-
-    //         return response()->json([
-    //             'status'=>'success',
-    //             'message'=>'New event has been created successfully'
-    //         ]);
-
-    //     }
-    //     catch(Exception $error){
-    //         return response()->json([
-    //             'status'=>'fail',
-    //             'message'=>'Request fail to create a new event Jhamela'
-    //         ], 401);
-    //     }
-    // }
-
-    function eventCreation(Request $request){
-        try {
-            $user_id = $request->header('id');
-            // Create the event
-            Event::create([
-                'user_id'=>$user_id,
-                'title' => $request->input('title'),
-                'description' => $request->input('description'),
-                'date' => $request->input('date'),
-                'time' => $request->input('time'),
-                'location' => $request->input('location'),
-                'event_category_id'=>$request->input('event_category_id ')
-                
-            ]);
     
-            return response()->json([
-                'status' =>'success',
-                'message' => 'Event created successfully'
-            ]);
-        } catch (Exception $e) {
-            return response()->json([
-                'status' =>'fail',
-                'message' => 'An error occurred while creating the event'
-            ], 500);
-        }
+    function eventCreation(Request $request){
+        
+            try{
+                $user_id = $request->header('id');
+            // Create the event
+                $event = Event::create([            
+                    'user_id'=>$user_id,
+                    'title'=>$request->input('title'),
+                    'description'=>$request->input('description'),
+                    'date'=>$request->input('date'),
+                    'time'=>$request->input('time'),
+                    'location'=>$request->input('location'),
+                    'event_category_id'=>$request->input('event_category_id'),
+                    
+                ]);
+        
+                return response()->json([
+                    'status' =>'success',
+                    'message' => 'Event created successfully',
+                    'event'=>$event
+                ]);
+            }
+            catch(Exception $e){
+                return response()->json([
+                    'status'=>'fail',
+                    'message'=>'An error ocurred while creating Event'
+                ], 401);
+            }
+        
     }
 
 
@@ -77,21 +54,16 @@ class EventController extends Controller
         try{
             $user_id = $request->header('id');
             $event_id = $request->input('id');
-            $title = $request->input('title');
-            $description = $request->input('description');
-            $time = $request->input('time');
-            $date = $request->input('date');
-            $location = $request->input('location');
-            $category = $request->input('event_category_id ');
-
+            
             Event::where('id', '=', $event_id)->where('user_id', '=', $user_id)
             ->update([
-                'title'=>$title,
-                'description'=>$description,
-                'time'=>$time,
-                'date'=>$date,
-                'location'=>$location,
-                'event_category_id'=>$category
+
+                'title'=>$request->input('title'),
+                'description'=>$request->input('description'),
+                'date'=>$request->input('date'),
+                'time'=>$request->input('time'),
+                'location'=>$request->input('location'),
+                'event_category_id'=>$request->input('event_category_id'),
             ]);
 
             return response()->json([

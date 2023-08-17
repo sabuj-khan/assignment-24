@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Product</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Create Event</h5>
                 </div>
                 <div class="modal-body">
                     <form id="save-form">
@@ -77,6 +77,7 @@
         }else if(location.length === 0){
             errorToast('Event location is required');
         }else{
+            document.getElementById('modal-close').click();
             let information = {
                 event_category_id:event_category_id,
                 title:title,
